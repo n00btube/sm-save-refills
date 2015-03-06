@@ -4,30 +4,25 @@ Makes save points in Super Metroid refill health/ammo.
 
 For xkas v06.  Unheadered.
 
-Also, because I discovered it was broken, there’s now a special bugfix patch for saving at the ship.
-The vanilla behavior is to do the write to SRAM **after** the “Save Completed” message is dismissed!
-That is, to “not actually save” until just before Samus exits her ship.
-
-`bugfix-ship-save` fixes the ordering.
-Saving happens much sooner, making the “completed” message honest.
-I’m including it here because it’s not worth having a separate git repo for it.
-
 # Props
 
-* Kejardon, for his always-excellent RAMMap, and for the MessageBoxes.  Huge time savers.
+* Kejardon, for his always-excellent RAMMap, PLM\_Details, and for the MessageBoxes.  Huge time savers.
 * DChronos for the message box guide.
 * [metconst](http://metroidconstruction.com) for always being my inspiration.
 
 # Notes
 
-This is an instant refill, without fancy routines like the ship uses.
+`bugfix-ship-save` fixes the ordering so that by the time the ship brings up the “save completed” message, saving **has** actually completed.
+I didn’t think it was worth making a repo of its own.
 
-The patch comes in two flavors:
+`refill-before-save` is v2 of the save-refill patch, the smooth refill!
+When the save point activates, Samus poses in it as if she’s being saved, and gets refilled.
+Then it asks whether the game should be saved.
 
-1. `vanilla` for the unmodified ROM.  Tested.
-2. `scyzer` for use with Scyzer’s save/load patches.  Not tested.
+Compared to v1, the hijack point is completely different, so there is no need to handle different save routine patches specially.
 
-If there is interest, I may check compatibility with JAM’s patches that affect saves as well.
+As written, it refills all main/reserve energy and all ammo, but you can skip the parts you don’t want.
+Check inside the ASM for details.
 
 As noted above, the patch is for xkas v06.
 Assembly is straightforward:
@@ -36,7 +31,7 @@ Assembly is straightforward:
 
 # Author
 
-Adam, not that this one was hard.
+[Adam](https://github.com/n00btube)
 
 # License
 

@@ -25,18 +25,15 @@ org $84AFEE
 ; I'm sorry it's so huge, there's a lot to do.
 org $84FF00
 refill_start:
-	PHX : PHY          ; preserve regs
 	TYA
 	STA $1D27,X        ; set refill_run as next PLM instruction
 	STZ $0A6A          ; silence energy alarm
-	JSR $B00E          ; freeze and pose Samus
+	JSR $B00E          ; freeze and pose Samus (saves X/Y itself)
 	STZ $05F9          ; steal "save?" msgbox response RAM for "done?"
-	BRA continue_fill  ; start filling
 
 refill_run:
 	PHX : PHY          ; preserve regs
 
-continue_fill:
 	; comment the LDX/JSR line (add a semicolon to the beginning of the line)
 	; of any items you DO NOT want to refill.
 	; for each line you comment, reduce the LDY value by 1: otherwise, the

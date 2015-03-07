@@ -22,13 +22,16 @@ org $84AFEE
 	; remaining PLM instructions are used as-is.
 
 ; this can be moved anywhere in bank $84’s free space, and MUST be bank $84.
-; I'm sorry it's so huge--108 ($6C) bytes--there's a lot to do.
+; I'm sorry it's so huge--118 ($76) bytes--there's a lot to do.
 org $84FF00
 refill_start:
 	TYA
 	STA $1D27,X        ; set refill_run as next PLM instruction
 	JSR $B00E          ; freeze and pose Samus (saves X/Y itself)
 	STZ $05F9          ; steal "save?" msgbox response RAM for "done?"
+	STZ $0A6A          ; zero "health alarm on" flag
+	LDA #$0001         ; stop sound
+	JSL $80914D        ; sound lib 3 routine
 
 refill_run:
 	PHX : PHY          ; preserve regs

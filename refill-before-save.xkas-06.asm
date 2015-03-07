@@ -22,7 +22,7 @@ org $84AFEE
 	; remaining PLM instructions are used as-is.
 
 ; this can be moved anywhere in bank $84’s free space, and MUST be bank $84.
-; I'm sorry it's so huge, there's a lot to do.
+; I'm sorry it's so huge--108 ($6C) bytes--there's a lot to do.
 org $84FF00
 refill_start:
 	TYA

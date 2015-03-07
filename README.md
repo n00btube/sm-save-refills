@@ -8,6 +8,7 @@ For xkas v06.  Unheadered.
 
 * Kejardon, for his always-excellent RAMMap, PLM\_Details, and for the MessageBoxes.  Huge time savers.
 * DChronos for the message box guide.
+* pjboy for the bank $80 disassembly.  Epic reference.
 * [metconst](http://metroidconstruction.com) for always being my inspiration.
 
 # Notes

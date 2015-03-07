@@ -27,7 +27,6 @@ org $84FF00
 refill_start:
 	TYA
 	STA $1D27,X        ; set refill_run as next PLM instruction
-	STZ $0A6A          ; silence energy alarm
 	JSR $B00E          ; freeze and pose Samus (saves X/Y itself)
 	STZ $05F9          ; steal "save?" msgbox response RAM for "done?"
 

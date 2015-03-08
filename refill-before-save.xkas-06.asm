@@ -20,7 +20,7 @@ org $84AFEE
 	; remaining PLM instructions are used as-is.
 
 ; this can be moved anywhere in bank $84’s free space, and MUST be bank $84.
-; Now optimized to 104 ($68) bytes--still big, but there's a lot to do.
+; Now optimized to 106 ($6A) bytes--still big, but there's a lot to do.
 org $84FF00
 refill_start:
 	TYA                ; copy pointer to refill_run into A
@@ -29,6 +29,8 @@ refill_start:
 	STZ $0A6A          ; zero "health alarm on" flag
 	LDA #$0001         ; stop sound
 	JSL $80914D        ; sound lib 3 routine (also saves X/Y)
+	INY : INY          ; advance past the refill_run instruction
+	; (if we are ALREADY full, JMP $8CF1 wouldn't have $B008 as arg.)
 
 refill_run:
 	PHX : PHY          ; preserve regs

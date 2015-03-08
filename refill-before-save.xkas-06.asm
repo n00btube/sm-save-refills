@@ -20,13 +20,12 @@ org $84AFEE
 	; remaining PLM instructions are used as-is.
 
 ; this can be moved anywhere in bank $84’s free space, and MUST be bank $84.
-; Now optimized to 107 ($6B) bytes--still big, but there's a lot to do.
+; Now optimized to 104 ($68) bytes--still big, but there's a lot to do.
 org $84FF00
 refill_start:
 	TYA                ; copy pointer to refill_run into A
 	STA $1D27,X        ; set refill_run as next PLM instruction
 	JSR $B00E          ; freeze and pose Samus (saves X/Y itself)
-	STZ $05F9          ; steal "save?" msgbox response RAM for "done?"
 	STZ $0A6A          ; zero "health alarm on" flag
 	LDA #$0001         ; stop sound
 	JSL $80914D        ; sound lib 3 routine (also saves X/Y)
